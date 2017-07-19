@@ -1,13 +1,12 @@
 /**
  * Created by baiying on 7/19/17.
  */
+const mysql = require("mysql");
 const express = require('express');
 
 const app = new express();
 
 app.use(express.static(__dirname + '/public'));
-
-var mysql = require("mysql");
 
 var con = mysql.createConnection({
     host: "localhost",
