@@ -7,6 +7,13 @@ export default store=>next=>action=> {
                 next({type: "SHOWUSERS", users: res.body})
             })
     }
+    else if (action.type === 'ADDUSER') {
+        request.post('/addUser')
+            .send(action.user)
+            .end(()=> {
+                store.dispatch({type: 'GETUSERS'})
+            })
+    }
     else {
         next(action);
     }

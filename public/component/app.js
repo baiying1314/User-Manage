@@ -8,9 +8,38 @@ export default class App extends Component {
         this.props.showUsers();
     }
 
+    alertModel() {
+        $('#modifyModal').modal('show')
+    }
+
+    addUser() {
+        const user = this.refs.user.value;
+        const name = this.refs.name.value;
+        const age = this.refs.age.value;
+        const sex = this.refs.sex.value;
+        const tel = this.refs.tel.value;
+        const email = this.refs.email.value;
+        const tip = this.refs.tip.value;
+        if (!(user && name && age && sex && tel && email && tip)) {
+            alert('请输入完整正确的信息');
+            return false;
+        }
+        else if (!(/^1[34578]\d{9}$/.test(tel))) {
+            alert("手机号码有误，请重填");
+            return false;
+        }
+        else if (!( /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/).test(email)) {
+            alert('邮箱有误,请重填');
+            return false;
+        }
+        else {
+            this.props.onAddUser({user, name, age, sex, tel, email, tip})
+        }
+    }
+
     render() {
         const users = this.props.users;
-        console.log(users);
+
         const userList = users.map((ele, index)=> {
             return <tr key={index}>
                 <td>{ele.user}</td>
@@ -27,10 +56,62 @@ export default class App extends Component {
             <div id='operate'>
                 <input type="text"/>
                 <button>查询</button>
-                <button>添加</button>
+                <button onClick={this.alertModel.bind(this)} data-toggle="modifyModal">添加</button>
+                <div className="modal fade bs-example-modal-lg" id="modifyModal" ref="modifyModal" role="dialog"
+                     aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h4 className="modal-title" id="myModalLabel">添加一个人员</h4>
+                            </div>
+                            <div className="input-group">
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">用户</span>
+                                    <input type="text" ref="user" className="form-control" placeholder="用户名"/>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">姓名</span>
+                                    <input type="text" ref="name" className="form-control" placeholder="姓名"/>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">年龄</span>
+                                    <input type="number" ref="age" className="form-control" placeholder="年龄"/>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">性别</span>
+                                    <select name="sex" id="sex" ref='sex' className="form-control">
+                                        <option value="" hidden="hidden">性别</option>
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                    </select>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">电话</span>
+                                    <input type="tel" ref="tel" className="form-control" placeholder="tel"/>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">邮件</span>
+                                    <input type="email" ref="email" className="form-control" placeholder="email"/>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">备注</span>
+                                    <input type="text" ref="tip" className="form-control" placeholder="tip"/>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <div className="tag" ref="tag"></div>
+                                <button type="button" className="btn btn-primary" onClick={this.addUser.bind(this)}>
+                                    提交
+                                </button>
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div id='userlist'>
-                <table>
+                <table className="table table-hover">
                     <tbody>
                     <tr>
                         <th>用户名</th>

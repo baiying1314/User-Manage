@@ -3,7 +3,7 @@
  */
 const showUsers = (state = [], action)=> {
     if (action.type === 'SHOWUSERS') {
-        return [...state, ...action.users];
+        return [...action.users];
     }
     return state;
 };

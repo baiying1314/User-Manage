@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch)=> {
     return {
         showUsers: ()=> {
             dispatch({type: 'GETUSERS'});
+        },
+        onAddUser:(user)=>{
+            dispatch({type:'ADDUSER',user});
         }
     }
 };
