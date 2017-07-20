@@ -41,6 +41,11 @@ export default class App extends Component {
         this.props.onDelete({userId});
     }
 
+    findUser() {
+        const findName = this.refs.findName.value;
+            this.props.OnFind({findName});
+    }
+
     render() {
         const users = this.props.users;
 
@@ -64,8 +69,8 @@ export default class App extends Component {
 
         return <div id="app">
             <div id='operate'>
-                <input type="text"/>
-                <button>查询</button>
+                <input type="text" ref='findName'/>
+                <button onClick={this.findUser.bind(this)}>查询</button>
                 <button onClick={this.alertModel.bind(this)} data-toggle="modifyModal">添加</button>
                 <div className="modal fade bs-example-modal-lg" id="modifyModal" ref="modifyModal" role="dialog"
                      aria-hidden="true">

@@ -21,6 +21,13 @@ export default store=>next=>action=> {
                 store.dispatch({type: 'GETUSERS'})
             })
     }
+    else if(action.type === 'FINDUSER'){
+        request.post('/findUser')
+            .send(action.findName)
+            .end((err,res)=>{
+                next({type: "SHOWUSERS", users: res.body})
+            })
+    }
     else {
         next(action);
     }

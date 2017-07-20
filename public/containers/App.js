@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch)=> {
         },
         onDelete: (userId)=> {
             dispatch({type: 'DELETEUSER', userId});
+        },
+        OnFind: (findName)=> {
+            dispatch({type: 'FINDUSER', findName});
         }
     }
 };
