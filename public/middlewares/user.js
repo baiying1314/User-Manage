@@ -28,6 +28,13 @@ export default store=>next=>action=> {
                 next({type: "SHOWUSERS", users: res.body})
             })
     }
+    else if(action.type === 'MODIFYUSER'){
+        request.post('/modifyUser')
+            .send(action.mdUser)
+            .end((err,res)=>{
+                store.dispatch({type: 'GETUSERS'})
+            })
+    }
     else {
         next(action);
     }

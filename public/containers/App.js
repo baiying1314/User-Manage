@@ -21,6 +21,9 @@ const mapDispatchToProps = (dispatch)=> {
         },
         OnFind: (findName)=> {
             dispatch({type: 'FINDUSER', findName});
+        },
+        onModify: (mdUser)=> {
+            dispatch({type:'MODIFYUSER',mdUser});
         }
     }
 };

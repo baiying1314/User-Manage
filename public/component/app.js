@@ -1,6 +1,3 @@
-/**
- * Created by baiying on 7/19/17.
- */
 import React, {Component} from "react";
 
 export default class App extends Component {
@@ -9,7 +6,7 @@ export default class App extends Component {
     }
 
     alertModel() {
-        $('#modifyModal').modal('show')
+        $('#Modal').modal('show')
     }
 
     addUser() {
@@ -20,6 +17,23 @@ export default class App extends Component {
         const tel = this.refs.tel.value;
         const email = this.refs.email.value;
         const tip = this.refs.tip.value;
+        const judgeResult = this.judgeInput(user, name, age, sex, tel, email, tip);
+        if (judgeResult) {
+            this.props.onAddUser({user, name, age, sex, tel, email, tip});
+        }
+
+    }
+
+    deleteUser(userId) {
+        this.props.onDelete({userId});
+    }
+
+    findUser() {
+        const findName = this.refs.findName.value;
+        this.props.OnFind({findName});
+    }
+
+    judgeInput(user, name, age, sex, tel, email, tip) {
         if (!(user && name && age && sex && tel && email && tip)) {
             alert('请输入完整正确的信息');
             return false;
@@ -33,17 +47,35 @@ export default class App extends Component {
             return false;
         }
         else {
-            this.props.onAddUser({user, name, age, sex, tel, email, tip})
+            return true;
         }
     }
 
-    deleteUser(userId) {
-        this.props.onDelete({userId});
+    modifyModal(ele) {
+        this.refs.mduser.value = ele.user;
+        this.refs.mdname.value = ele.name;
+        this.refs.mdage.value = ele.age;
+        this.refs.mdsex.value = ele.sex;
+        this.refs.mdtel.value = ele.tel;
+        this.refs.mdemail.value = ele.email;
+        this.refs.mdtip.value = ele.tip;
+        this.refs.mdModal.value = ele.id;
+        $('#mdModal').modal('show')
     }
 
-    findUser() {
-        const findName = this.refs.findName.value;
-            this.props.OnFind({findName});
+    modifyUser() {
+        const user = this.refs.mduser.value;
+        const name = this.refs.mdname.value;
+        const age = this.refs.mdage.value;
+        const sex = this.refs.mdsex.value;
+        const tel = this.refs.mdtel.value;
+        const email = this.refs.mdemail.value;
+        const tip = this.refs.mdtip.value;
+        const id = this.refs.mdModal.value;
+        const judgeResult = this.judgeInput(user, name, age, sex, tel, email, tip);
+        if (judgeResult) {
+            this.props.onModify({user, name, age, sex, tel, email, tip, id});
+        }
     }
 
     render() {
@@ -62,7 +94,7 @@ export default class App extends Component {
                     <button onClick={this.deleteUser.bind(this, ele.id)}>删除</button>
                 </td>
                 <td>
-                    <button>修改</button>
+                    <button onClick={this.modifyModal.bind(this, ele)}>修改</button>
                 </td>
             </tr>
         });
@@ -72,7 +104,7 @@ export default class App extends Component {
                 <input type="text" ref='findName'/>
                 <button onClick={this.findUser.bind(this)}>查询</button>
                 <button onClick={this.alertModel.bind(this)} data-toggle="modifyModal">添加</button>
-                <div className="modal fade bs-example-modal-lg" id="modifyModal" ref="modifyModal" role="dialog"
+                <div className="modal fade bs-example-modal-lg" id="Modal" ref="Modal" role="dialog"
                      aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
@@ -124,6 +156,57 @@ export default class App extends Component {
                     </div>
                 </div>
 
+                <div className="modal fade bs-example-modal-lg" id="mdModal" ref="mdModal" role="dialog"
+                     aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h4 className="modal-title" id="myModalLabel">修改成员信息</h4>
+                            </div>
+                            <div className="input-group">
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">用户</span>
+                                    <input type="text" ref="mduser" className="form-control" placeholder="用户名"/>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">姓名</span>
+                                    <input type="text" ref="mdname" className="form-control" placeholder="姓名"/>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">年龄</span>
+                                    <input type="number" ref="mdage" className="form-control" placeholder="年龄"/>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">性别</span>
+                                    <select name="sex" id="sex" ref='mdsex' className="form-control">
+                                        <option value="" hidden="hidden">性别</option>
+                                        <option value="男">男</option>
+                                        <option value="女">女</option>
+                                    </select>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">电话</span>
+                                    <input type="tel" ref="mdtel" className="form-control" placeholder="tel"/>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">邮件</span>
+                                    <input type="email" ref="mdemail" className="form-control" placeholder="email"/>
+                                </div>
+                                <div className="input-group">
+                                    <span className="input-group-addon" id="basic-addon1">备注</span>
+                                    <input type="text" ref="mdtip" className="form-control" placeholder="tip"/>
+                                </div>
+                            </div>
+                            <div className="modal-footer">
+                                <div className="tag" ref="tag"></div>
+                                <button type="button" className="btn btn-primary" onClick={this.modifyUser.bind(this)}>
+                                    提交
+                                </button>
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div id='userlist'>
                 <table className="table table-hover">

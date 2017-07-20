@@ -3,6 +3,7 @@ const getUsers = require('./server/getUsers');
 const addUser = require('./server/addUser');
 const deleteUser = require('./server/deleteUser');
 const findUser = require('./server/findUser');
+const modifyUser = require('./server/modifyUser');
 
 const express = require('express');
 
@@ -17,6 +18,7 @@ app.use('/', getUsers);
 app.use('/', addUser);
 app.use('/', deleteUser);
 app.use('/', findUser);
+app.use('/', modifyUser);
 
 app.listen('3000', ()=> {
     console.log('3000 port is sucessful');
