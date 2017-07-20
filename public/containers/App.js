@@ -5,13 +5,13 @@ import {connect} from "react-redux";
 import App from "../component/app";
 
 const mapStatetoProps = (state)=> {
-    return {state}
+    return {users: state};
 };
 
 const mapDispatchToProps = (dispatch)=> {
     return {
         showUsers: ()=> {
-            dispatch({type: 'SHOWUSERS'});
+            dispatch({type: 'GETUSERS'});
         }
     }
 };

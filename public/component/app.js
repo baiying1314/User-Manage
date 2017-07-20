@@ -5,14 +5,13 @@ import React, {Component} from "react";
 
 export default class App extends Component {
     componentWillMount() {
-        console.log(this.props);
         this.props.showUsers();
     }
 
     render() {
-        const users = this.props.state;
+        const users = this.props.users;
+        console.log(users);
         const userList = users.map((ele, index)=> {
-            console.log(ele);
             return <tr key={index}>
                 <td>{ele.user}</td>
                 <td>{ele.name}</td>
@@ -23,6 +22,7 @@ export default class App extends Component {
                 <td>{ele.tip}</td>
             </tr>
         });
+
         return <div id="app">
             <div id='operate'>
                 <input type="text"/>
