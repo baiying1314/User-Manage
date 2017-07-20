@@ -4,6 +4,7 @@
 const bodyParser = require('body-parser');
 const getUsers = require('./server/getUsers');
 const addUser = require('./server/addUser');
+const deleteUser = require('./server/deleteUser');
 
 const express = require('express');
 
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/', getUsers);
 app.use('/', addUser);
+app.use('/', deleteUser);
 
 app.listen('3000', ()=> {
     console.log('3000 port is sucessful');

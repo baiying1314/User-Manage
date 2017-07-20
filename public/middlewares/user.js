@@ -14,6 +14,13 @@ export default store=>next=>action=> {
                 store.dispatch({type: 'GETUSERS'})
             })
     }
+    else if (action.type === 'DELETEUSER') {
+        request.post('/deleteUser')
+            .send(action.userId)
+            .end(()=> {
+                store.dispatch({type: 'GETUSERS'})
+            })
+    }
     else {
         next(action);
     }

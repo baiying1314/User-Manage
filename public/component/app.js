@@ -37,6 +37,10 @@ export default class App extends Component {
         }
     }
 
+    deleteUser(userId) {
+        this.props.onDelete({userId});
+    }
+
     render() {
         const users = this.props.users;
 
@@ -49,6 +53,12 @@ export default class App extends Component {
                 <td>{ele.tel}</td>
                 <td>{ele.email}</td>
                 <td>{ele.tip}</td>
+                <td>
+                    <button onClick={this.deleteUser.bind(this, ele.id)}>删除</button>
+                </td>
+                <td>
+                    <button>修改</button>
+                </td>
             </tr>
         });
 
@@ -121,6 +131,8 @@ export default class App extends Component {
                         <th>移动电话</th>
                         <th>电子邮件</th>
                         <th>备注</th>
+                        <th>删除</th>
+                        <th>修改</th>
                     </tr>
                     {userList}
                     </tbody>
