@@ -21,7 +21,6 @@ export default class App extends Component {
         if (judgeResult) {
             this.props.onAddUser({user, name, age, sex, tel, email, tip});
         }
-
     }
 
     deleteUser(userId) {
@@ -91,19 +90,22 @@ export default class App extends Component {
                 <td>{ele.email}</td>
                 <td>{ele.tip}</td>
                 <td>
-                    <button onClick={this.deleteUser.bind(this, ele.id)}>删除</button>
+                    <button className="form-control" onClick={this.deleteUser.bind(this, ele.id)}>删除</button>
                 </td>
                 <td>
-                    <button onClick={this.modifyModal.bind(this, ele)}>修改</button>
+                    <button className="form-control" onClick={this.modifyModal.bind(this, ele)}>修改</button>
                 </td>
             </tr>
         });
 
         return <div id="app">
             <div id='operate'>
-                <input type="text" ref='findName'/>
-                <button onClick={this.findUser.bind(this)}>查询</button>
-                <button onClick={this.alertModel.bind(this)} data-toggle="modifyModal">添加</button>
+                <div className="input-group">
+                    <input type="text" ref='findName' className="btn" placeholder="请输入人员姓名查询"/>
+                    <button onClick={this.findUser.bind(this)} className="btn" id="find">查询</button>
+                    <button onClick={this.alertModel.bind(this)} className="btn"  id="add" data-toggle="modifyModal">添加
+                    </button>
+                </div>
                 <div className="modal fade bs-example-modal-lg" id="Modal" ref="Modal" role="dialog"
                      aria-hidden="true">
                     <div className="modal-dialog" role="document">
@@ -111,30 +113,30 @@ export default class App extends Component {
                             <div className="modal-header">
                                 <h4 className="modal-title" id="myModalLabel">添加一个人员</h4>
                             </div>
-                            <div className="input-group">
+                            <div className="input-group" id="addInput">
                                 <div className="input-group">
                                     <span className="input-group-addon" id="basic-addon1">用户</span>
-                                    <input type="text" ref="user" className="form-control" placeholder="用户名"/>
+                                    <input type="text" ref="user" className="form-control" placeholder="user"/>
                                 </div>
                                 <div className="input-group">
                                     <span className="input-group-addon" id="basic-addon1">姓名</span>
-                                    <input type="text" ref="name" className="form-control" placeholder="姓名"/>
+                                    <input type="text" ref="name" className="form-control" placeholder="name"/>
                                 </div>
                                 <div className="input-group">
                                     <span className="input-group-addon" id="basic-addon1">年龄</span>
-                                    <input type="number" ref="age" className="form-control" placeholder="年龄"/>
+                                    <input type="number" ref="age" className="form-control" placeholder="age"/>
                                 </div>
                                 <div className="input-group">
                                     <span className="input-group-addon" id="basic-addon1">性别</span>
                                     <select name="sex" id="sex" ref='sex' className="form-control">
-                                        <option value="" hidden="hidden">性别</option>
+                                        <option value="" hidden="hidden">sex</option>
                                         <option value="男">男</option>
                                         <option value="女">女</option>
                                     </select>
                                 </div>
                                 <div className="input-group">
                                     <span className="input-group-addon" id="basic-addon1">电话</span>
-                                    <input type="tel" ref="tel" className="form-control" placeholder="tel"/>
+                                    <input type="tel" ref="tel" className="form-control" placeholder="telephone"/>
                                 </div>
                                 <div className="input-group">
                                     <span className="input-group-addon" id="basic-addon1">邮件</span>
@@ -163,7 +165,7 @@ export default class App extends Component {
                             <div className="modal-header">
                                 <h4 className="modal-title" id="myModalLabel">修改成员信息</h4>
                             </div>
-                            <div className="input-group">
+                            <div className="input-group" id="mdInput">
                                 <div className="input-group">
                                     <span className="input-group-addon" id="basic-addon1">用户</span>
                                     <input type="text" ref="mduser" className="form-control" placeholder="用户名"/>
@@ -209,7 +211,7 @@ export default class App extends Component {
                 </div>
             </div>
             <div id='userlist'>
-                <table className="table table-hover">
+                <table className="table">
                     <tbody>
                     <tr>
                         <th>用户名</th>

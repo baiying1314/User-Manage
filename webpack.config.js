@@ -10,6 +10,10 @@ module.exports = {
         loaders: [
             {test: /\.css$/, loader: "style!css"},
             {
+                test: /\.(png|jpg|jpeg)$/,
+                loader: 'file-loader?name=/images/[name].[ext]'
+            },
+            {
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
@@ -17,6 +21,7 @@ module.exports = {
                     presets: ['es2015', 'react']
                 },
             },
+
         ]
     }
 };
