@@ -33,7 +33,9 @@ export default store=>next=>action=> {
         request.post('/modifyUser')
             .send(action.mdUser)
             .end((err,res)=>{
-                store.dispatch({type: 'GETUSERS'})
+                store.dispatch({type: 'GETUSERS'});
+                store.dispatch({type:'MDRESULT',mdResult:res.body.mdResult});
+
             })
     }
     else {

@@ -3,14 +3,14 @@ const router = express.Router();
 
 const con = require('./connect');
 
-router.post('/modifyUser', (req, res, next)=> {
+router.post('/modifyUser', (req, res)=> {
 const modifyUser = req.body;
-const modifyquery = `update users set user = '${modifyUser.user}',name = '${modifyUser.name}',age = '${modifyUser.age}',sex = '${modifyUser.sex}',tel = '${modifyUser.tel}',email='${modifyUser.email}',tip = '${modifyUser.tip}'`;
-   con.query(modifyquery,(err,rows)=>{
+const modifyquery = `update users set user = '${modifyUser.user}',name = '${modifyUser.name}',age = '${modifyUser.age}',sex = '${modifyUser.sex}',tel = '${modifyUser.tel}',email='${modifyUser.email}',tip = '${modifyUser.tip}'where id = ${modifyUser.id}`;
+   con.query(modifyquery,(err)=>{
       if(err){
-          next(err);
+         res.send({mdResult:false});
       }
-      res.end()
+      res.send({mdResult:true})
    });
 });
 

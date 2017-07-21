@@ -79,12 +79,18 @@ export default class App extends Component {
         }
     }
 
-    showTag(addResult){
+    showTag(addResult,mdResult){
         if(addResult === true){
             this.refs.tag1.innerHTML = '添加成功';
         }
-        else if(addResult === false){
+        if(addResult === false){
             this.refs.tag1.innerHTML = '添加失败';
+        }
+        if(mdResult === true){
+            this.refs.tag2.innerHTML = '修改成功';
+        }
+        if(mdResult === false){
+            this.refs.tag2.innerHTML = '修改失败';
         }
     }
 
@@ -92,6 +98,7 @@ export default class App extends Component {
         const users = this.props.users;
         const userInfo = users.userList;
         const addResult = users.addResult;
+        const mdResult = users.mdResult;
         const userList = userInfo.map((ele, index)=> {
             return <tr key={index}>
                 <td>{ele.user}</td>
@@ -164,7 +171,7 @@ export default class App extends Component {
                                 <button type="button" className="btn btn-primary" onClick={this.addUser.bind(this)}>
                                     提交
                                 </button>
-                                {this.showTag(addResult)}
+
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">关闭</button>
                             </div>
                         </div>
@@ -222,6 +229,7 @@ export default class App extends Component {
                         </div>
                     </div>
                 </div>
+                {this.showTag(addResult,mdResult)}
             </div>
             <div id='userlist'>
                 <table className="table">
