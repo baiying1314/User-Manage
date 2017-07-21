@@ -3,6 +3,7 @@ node_js :
   - "6"
 services:
   - mysql
+script: npm test
 sudo: required
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS userTest;'
