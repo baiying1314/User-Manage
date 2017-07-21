@@ -6,6 +6,8 @@ export default class App extends Component {
     }
 
     alertModel() {
+        this.refs.tag1.innerHTML = '';
+
         $('#Modal').modal('show')
     }
 
@@ -77,10 +79,20 @@ export default class App extends Component {
         }
     }
 
+    showTag(addResult){
+        if(addResult === true){
+            this.refs.tag1.innerHTML = '添加成功';
+        }
+        else if(addResult === false){
+            this.refs.tag1.innerHTML = '添加失败';
+        }
+    }
+
     render() {
         const users = this.props.users;
-
-        const userList = users.map((ele, index)=> {
+        const userInfo = users.userList;
+        const addResult = users.addResult;
+        const userList = userInfo.map((ele, index)=> {
             return <tr key={index}>
                 <td>{ele.user}</td>
                 <td>{ele.name}</td>
@@ -103,7 +115,7 @@ export default class App extends Component {
                 <div className="input-group">
                     <input type="text" ref='findName' className="btn" placeholder="请输入人员姓名查询"/>
                     <button onClick={this.findUser.bind(this)} className="btn" id="find">查询</button>
-                    <button onClick={this.alertModel.bind(this)} className="btn"  id="add" data-toggle="modifyModal">添加
+                    <button onClick={this.alertModel.bind(this)} className="btn" id="add" data-toggle="modifyModal">添加
                     </button>
                 </div>
                 <div className="modal fade bs-example-modal-lg" id="Modal" ref="Modal" role="dialog"
@@ -148,10 +160,11 @@ export default class App extends Component {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <div className="tag" ref="tag"></div>
+                                <div className="tag" ref="tag1"></div>
                                 <button type="button" className="btn btn-primary" onClick={this.addUser.bind(this)}>
                                     提交
                                 </button>
+                                {this.showTag(addResult)}
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">关闭</button>
                             </div>
                         </div>
@@ -200,7 +213,7 @@ export default class App extends Component {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <div className="tag" ref="tag"></div>
+                                <div className="tag" ref="tag2"></div>
                                 <button type="button" className="btn btn-primary" onClick={this.modifyUser.bind(this)}>
                                     提交
                                 </button>

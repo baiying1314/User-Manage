@@ -10,8 +10,9 @@ export default store=>next=>action=> {
     else if (action.type === 'ADDUSER') {
         request.post('/addUser')
             .send(action.user)
-            .end(()=> {
-                store.dispatch({type: 'GETUSERS'})
+            .end((err,res)=> {
+                store.dispatch({type: 'GETUSERS'});
+                store.dispatch({type:'MDADDRESULT',addResult:res.body.addResult});
             })
     }
     else if (action.type === 'DELETEUSER') {

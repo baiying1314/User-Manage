@@ -5,12 +5,12 @@ const con = require('./connect');
 
 router.post('/addUser', (req, res, next)=> {
     const selectquery = `insert into users values(NULL,'${req.body.user}','${req.body.name}',${req.body.age},'${req.body.sex}','${req.body.tel}','${req.body.email}','${req.body.tip}')`;
-    con.query(selectquery, (err, rows)=> {
+    con.query(selectquery, (err)=> {
         if (err) {
+            res.send({addResult:false});
             next(err);
-            return;
         }
-        res.end();
+        res.send({addResult:true});
     });
 });
 
