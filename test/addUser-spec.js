@@ -13,7 +13,7 @@ describe('USERS-CRUD', () => {
         email: '1165444511@qq.com',
         tip: 'haha'
     };
-    let addResult = {addResult: true||false};
+    let addResult = {addResult: true || false};
     it('add successfully', function (done) {
         request(app)
             .post('/addUser')

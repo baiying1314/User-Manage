@@ -16,9 +16,8 @@ describe('USERS-CRUD', () => {
             tip: 'haha'
         };
         con.query(`delete from users`, (err, result) => {
-            const selectquery = `insert into users values(id = NULL,user ='${defaultUser.user}',name='${defaultUser.name}',age =${defaultUser.age},sex = '${defaultUser.sex}',tel ='${defaultUser.tel}',email = '${defaultUser.email}',tip = '${defaultUser.tip}')`;
-            con.query(selectquery, function (err, result) {
-                console.log(result);
+            const insertQuery = `insert into users values('${defaultUser.user}','${defaultUser.name}',${defaultUser.age},'${defaultUser.sex}','${defaultUser.tel}','${defaultUser.email}','${defaultUser.tip}',NULL)`;
+            con.query(insertQuery, function (err, result) {
                 id = result.insertId;
                 if (err) {
                     console.log(err);

@@ -19,19 +19,21 @@ describe('USERS-CRUD', () => {
         con.query(`delete from users`, (err, result) => {
             const insertQuery = `insert into users values('${defaultUser.user}','${defaultUser.name}',${defaultUser.age},'${defaultUser.sex}','${defaultUser.tel}','${defaultUser.email}','${defaultUser.tip}',NULL)`;
             con.query(insertQuery, function (err, result) {
+                id = result.insertId;
                 if (err) {
                     console.log(err);
                 }
-                id = result.insertId;
                 done();
             });
+
         });
     });
 
-    it('get all users successfully', function (done) {
+    it('find user successfully', function (done) {
         defaultUser.id = id;
         request(app)
-            .get('/getUsers')
+            .post('/findUser')
+            .send({findName: defaultUser.name})
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200, [defaultUser], done);
