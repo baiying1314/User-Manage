@@ -8,7 +8,7 @@ const router = express.Router();
 const con = require('./connect');
 
 router.get('/getUsers', (req, res, next)=> {
-    const selectquery = 'select * from users';
+        const selectquery = 'select * from users';
     con.query(selectquery, (err, rows)=> {
         if (err) {
             console.log(err);

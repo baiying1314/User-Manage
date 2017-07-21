@@ -1,22 +1,22 @@
-/**
- * Created by baiying on 7/20/17.
- */
 const mysql = require("mysql");
+var config = require('config');
 
-var con = mysql.createConnection({
+var dbConfig = config.get('App.dbConfig');
+module.exports = `mongodb://localhost:27017/${dbConfig.dbName}`;
+
+const con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "123456",
-    database: "user",
+    database: dbConfig.dbName,
     port: 3306
 });
 
-con.connect(function (err) {
-    if (err) {
-        console.log(err);
-        return;
+con.connect((err)=>{
+    if(err){
+        console.log('database connect error')
     }
-    console.log('connecting success');
+    console.log('databse connect sucessfully')
 });
 
 module.exports = con;

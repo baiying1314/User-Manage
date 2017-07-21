@@ -27,7 +27,7 @@ body {
 }
 
 #addInput,#mdInput{
-    width: 60%;;
+    width: 60%;
 }
 
 #addInput>.input-group,#mdInput>.input-group{

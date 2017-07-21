@@ -10,9 +10,9 @@ export default store=>next=>action=> {
     else if (action.type === 'ADDUSER') {
         request.post('/addUser')
             .send(action.user)
-            .end((err,res)=> {
+            .end((err, res)=> {
                 store.dispatch({type: 'GETUSERS'});
-                store.dispatch({type:'MDADDRESULT',addResult:res.body.addResult});
+                store.dispatch({type: 'MDADDRESULT', addResult: res.body.addResult});
             })
     }
     else if (action.type === 'DELETEUSER') {
@@ -22,19 +22,19 @@ export default store=>next=>action=> {
                 store.dispatch({type: 'GETUSERS'})
             })
     }
-    else if(action.type === 'FINDUSER'){
+    else if (action.type === 'FINDUSER') {
         request.post('/findUser')
             .send(action.findName)
-            .end((err,res)=>{
+            .end((err, res)=> {
                 next({type: "SHOWUSERS", users: res.body})
             })
     }
-    else if(action.type === 'MODIFYUSER'){
+    else if (action.type === 'MODIFYUSER') {
         request.post('/modifyUser')
             .send(action.mdUser)
-            .end((err,res)=>{
+            .end((err, res)=> {
                 store.dispatch({type: 'GETUSERS'});
-                store.dispatch({type:'MDRESULT',mdResult:res.body.mdResult});
+                store.dispatch({type: 'MDRESULT', mdResult: res.body.mdResult});
 
             })
     }
