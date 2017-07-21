@@ -22,19 +22,6 @@ body {
 #app #userlist, #app table {
     width: 100%;
 }
-
-/*table {*/
-    /*width: 100%;*/
-/*}*/
-
-/*th {*/
-    /*height: 50%;*/
-/*}*/
-
-/*table tr td {*/
-    /*text-align: left;*/
-/*}*/
-
 #Modal, #mdModal {
     width: 100%;
 }
@@ -50,4 +37,9 @@ body {
 #find,#add{
     width: 80px;
     margin: 10px;
+}
+
+.tag{
+    color: darkred;
+    font-size: small;
 }
