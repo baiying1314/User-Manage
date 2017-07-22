@@ -2,7 +2,7 @@
  * Created by baiying on 7/20/17.
  */
 import {connect} from "react-redux";
-import App from "../component/app";
+import App from "../component/User";
 
 const mapStatetoProps = (state)=> {
     return {users: state};

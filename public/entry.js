@@ -7,8 +7,8 @@ import {render} from "react-dom";
 import {Provider} from "react-redux";
 import {createStore, applyMiddleware} from "redux";
 import {Router, Route, hashHistory} from "react-router";
-import App from "./containers/App";
-import reducer from "./reducers/app";
+import App from "./containers/User";
+import reducer from "./reducers/userOperate";
 import user from "./middlewares/user";
 
 const middleware = applyMiddleware(user);

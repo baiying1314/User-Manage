@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-export default class App extends Component {
+export default class User extends Component {
     componentWillMount() {
         this.props.showUsers();
     }
