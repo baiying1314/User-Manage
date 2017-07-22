@@ -14,8 +14,10 @@ const con = mysql.createConnection({
 con.on('error', function (err) {
     throw err;
 });
-
+console.log('dsff');
 con.connect();
+console.log('haha');
+
 con.query(`CREATE DATABASE IF NOT EXISTS ${dbName}`,(err,result)=>{
     if(err){
         console.log(err);
