@@ -4,16 +4,15 @@ node_js :
 services:
   - mysql
 script: npm test
-#sudo: required
-#before_install:
-#  - mysql -e 'CREATE DATABASE IF NOT EXISTS userTest;'
-#  - mysql -e 'use users; create table users(
-#                            id int(11) auto_increment primary key,
-#                            username varchar(20),
-#                            name varchar(20),
-#                            age int(11),
-#                            sex char(10),
-#                            tel varchar(30),
-#                            email varchar(30),
-#                            tip varchar(30)),
-#                            id int auto_incremen primary key;'
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS userTest;'
+  - mysql -e 'use userTest; create table users(
+                            id int(11) auto_increment primary key,
+                            username varchar(20),
+                            name varchar(20),
+                            age int(11),
+                            sex char(10),
+                            tel varchar(30),
+                            email varchar(30),
+                            tip varchar(30)),
+                            id int auto_incremen primary key;'
