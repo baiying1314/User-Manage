@@ -79,17 +79,17 @@ export default class App extends Component {
         }
     }
 
-    showTag(addResult,mdResult){
-        if(addResult === true){
+    showTag(addResult, mdResult) {
+        if (addResult === true) {
             this.refs.tag1.innerHTML = '添加成功';
         }
-        if(addResult === false){
+        if (addResult === false) {
             this.refs.tag1.innerHTML = '添加失败';
         }
-        if(mdResult === true){
+        if (mdResult === true) {
             this.refs.tag2.innerHTML = '修改成功';
         }
-        if(mdResult === false){
+        if (mdResult === false) {
             this.refs.tag2.innerHTML = '修改失败';
         }
     }
@@ -229,7 +229,7 @@ export default class App extends Component {
                         </div>
                     </div>
                 </div>
-                {this.showTag(addResult,mdResult)}
+                {this.showTag(addResult, mdResult)}
             </div>
             <div id='userlist'>
                 <table className="table">

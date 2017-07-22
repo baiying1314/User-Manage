@@ -16,8 +16,8 @@ con.on('error', function (err) {
 });
 
 con.connect();
-con.query(`CREATE DATABASE IF NOT EXISTS ${dbName}`,(err,result)=>{
-    if(err){
+con.query(`CREATE DATABASE IF NOT EXISTS ${dbName}`, (err, result)=> {
+    if (err) {
         console.log(err);
         return err;
     }

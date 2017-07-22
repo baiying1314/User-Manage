@@ -6,7 +6,7 @@ let app = require('../server');
 describe('USERS-CRUD', () => {
     let defaultUser, id;
     beforeEach((done) => {
-         defaultUser = {
+        defaultUser = {
             user: 'baiying',
             name: '白颖',
             age: 21,
