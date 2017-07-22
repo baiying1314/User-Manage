@@ -14,5 +14,4 @@ before_install:
                             sex char(10),
                             tel varchar(30),
                             email varchar(30),
-                            tip varchar(30)),
-                            id int auto_incremen primary key;'
+                            tip varchar(30));'
