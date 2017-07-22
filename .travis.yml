@@ -4,6 +4,8 @@ node_js :
 services:
   - mysql
 sudo: required
+#before_script:
+#  - cp .travis.database.yml config/database.yml
 script: npm test
 
 before_install:
