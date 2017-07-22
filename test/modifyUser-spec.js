@@ -9,26 +9,24 @@ describe('USERS-CRUD', () => {
     beforeEach((done) => {
         defaultUser = {
             user: 'baiying',
-            name: 'ii',
+            name: '白颖',
             age: 21,
-            sex: 'nv',
+            sex: '女',
             tel: '15829245760',
             email: '1165444511@qq.com',
-            tip: 'haha',
-            id: 1
+            tip: '学生'
         };
         defaultMdUser = {
-            user: 'bai',
-            name: 'ii',
-            age: 21,
-            sex: 'nv',
+            user: 'baiying',
+            name: '白',
+            age: 18,
+            sex: '女',
             tel: '15829245760',
             email: '1165444511@qq.com',
-            tip: 'haha',
-            id: 1
+            tip: 'girl'
         };
         con.query(`delete from users`, (err, result) => {
-            const insertQuery = `insert into users values('${defaultUser.user}','${defaultUser.name}',${defaultUser.age},'${defaultUser.sex}','${defaultUser.tel}','${defaultUser.email}','${defaultUser.tip}',NULL)`;
+            const insertQuery = `insert into users values(NULL,'${defaultUser.user}','${defaultUser.name}',${defaultUser.age},'${defaultUser.sex}','${defaultUser.tel}','${defaultUser.email}','${defaultUser.tip}')`;
             con.query(insertQuery, function (err, result) {
                 id = result.insertId;
                 if (err) {

@@ -6,14 +6,14 @@ let app = require('../server');
 describe('USERS-CRUD', () => {
     let defaultUser = {
         user: 'baiying',
-        name: 'ii',
+        name: '白颖',
         age: 21,
-        sex: 'nv',
+        sex: '女',
         tel: '15829245760',
         email: '1165444511@qq.com',
-        tip: 'haha'
+        tip: '学生'
     };
-    let addResult = {addResult: true || false};
+    let addResult = {addResult: true};
     it('add successfully', function (done) {
         request(app)
             .post('/addUser')

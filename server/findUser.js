@@ -12,6 +12,7 @@ router.post('/findUser', (req, res, next)=> {
     }
     con.query(findquery, (err, rows)=> {
         if (err) {
+            console.log(err);
             next(err);
         }
         res.send(rows);
